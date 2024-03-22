@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,25 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     [Range(1f, 25f)]
     private float moveSpeed;
+    
+    [SerializeField]
+    [Range(1f, 25f)]
+    private float jumpForce;
+    
+    [SerializeField]
+    private LayerMask groundMask;
+    
+    [SerializeField]
+    [Range(0.1f, 5f)]
+    private float jumpRayXOffset;
+    
+    [SerializeField]
+    [Range(0.1f, 5f)]
+    private float jumpRayYOffset;
+    
+    [SerializeField]
+    [Range(0.1f, 5f)]
+    private float jumpRayLenght;
     
     [Header("Camera")]
     [SerializeField]
@@ -47,7 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         CameraLook();
     }
-
+   
     private void FixedUpdate()
     {
         Move();
@@ -85,5 +105,51 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = Vector2.zero;
         }
+    }
+
+    public void OnJumpInput(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            if (IsGrounded())
+            {
+                Debug.Log("JUMP");
+                playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            }
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        Ray[] rays = new Ray[4]
+        {
+            new Ray(GetOriginJumpRay(transform.forward), Vector3.down),
+            new Ray(GetOriginJumpRay(-transform.forward), Vector3.down),
+            new Ray(GetOriginJumpRay(transform.right), Vector3.down),
+            new Ray(GetOriginJumpRay(transform.right), Vector3.down)
+        };
+
+        for (int i = 0; i < rays.Length; i++)
+        {
+            if (Physics.Raycast(rays[i], jumpRayLenght, groundMask))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawRay(GetOriginJumpRay(transform.forward), Vector3.down);
+        Gizmos.DrawRay(GetOriginJumpRay(-transform.forward), Vector3.down);
+        Gizmos.DrawRay(GetOriginJumpRay(transform.right), Vector3.down);
+        Gizmos.DrawRay(GetOriginJumpRay(-transform.right), Vector3.down);
+    }
+
+    private Vector3 GetOriginJumpRay(Vector3 direction)
+    {
+        return transform.position + (direction * jumpRayXOffset) + (Vector3.up * jumpRayYOffset);
     }
 }
