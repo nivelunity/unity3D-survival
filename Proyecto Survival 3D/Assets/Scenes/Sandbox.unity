@@ -249,7 +249,7 @@ PrefabInstance:
     - target: {fileID: 4477963126400016047, guid: 2082d2809b768394f941015a530b680d,
         type: 3}
       propertyPath: m_Name
-      value: Need (2)
+      value: Need Sleep
       objectReference: {fileID: 0}
     - target: {fileID: 7959209283284349309, guid: 2082d2809b768394f941015a530b680d,
         type: 3}
@@ -280,6 +280,7 @@ GameObject:
   - component: {fileID: 106145457}
   - component: {fileID: 106145456}
   - component: {fileID: 106145458}
+  - component: {fileID: 106145460}
   - component: {fileID: 106145459}
   m_Layer: 6
   m_Name: Player
@@ -501,6 +502,48 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &106145460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106145454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41ec6555fe17e943ac1716e6b7f992e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health:
+    curValue: 0
+    maxValue: 100
+    startValue: 100
+    regenRate: 0
+    decayRate: 0
+    uiBar: {fileID: 1240514774}
+  hunger:
+    curValue: 0
+    maxValue: 500
+    startValue: 300
+    regenRate: 0
+    decayRate: 1
+    uiBar: {fileID: 1986411784}
+  thirst:
+    curValue: 0
+    maxValue: 500
+    startValue: 300
+    regenRate: 0
+    decayRate: 2
+    uiBar: {fileID: 1722369082}
+  sleep:
+    curValue: 0
+    maxValue: 500
+    startValue: 100
+    regenRate: 0
+    decayRate: 0
+    uiBar: {fileID: 1783670402}
+  noHungerHealthDecay: 1
+  noThirstHealthDecay: 1
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,6 +1593,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1240514774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2350852249654809957, guid: 2082d2809b768394f941015a530b680d,
+    type: 3}
+  m_PrefabInstance: {fileID: 6964646523081471705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1291985760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1680,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1291985760}
   m_CullTransparentMesh: 1
+--- !u!114 &1722369082 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2350852249654809957, guid: 2082d2809b768394f941015a530b680d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1880116096}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1783670402 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2350852249654809957, guid: 2082d2809b768394f941015a530b680d,
+    type: 3}
+  m_PrefabInstance: {fileID: 69420196}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1851010084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,6 +1953,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1880116096}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1986411784 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2350852249654809957, guid: 2082d2809b768394f941015a530b680d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1071142348}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2068601889
 GameObject:
   m_ObjectHideFlags: 0
